@@ -1,5 +1,9 @@
 # QuandlAccess.jl
 
+[![Travis Build Status](https://travis-ci.org/tk3369/QuandlAccess.jl.svg?branch=master)](https://travis-ci.org/tk3369/QuandlAccess.jl)
+[![codecov.io](http://codecov.io/github/tk3369/QuandlAccess.jl/coverage.svg?branch=master)](http://codecov.io/github/tk3369/QuandlAccess.jl?branch=master)
+![Project Status](https://img.shields.io/badge/status-new-green)
+
 This package provides convenient access to [Quandl](https://www.quandl.com/)
 data service.
 
