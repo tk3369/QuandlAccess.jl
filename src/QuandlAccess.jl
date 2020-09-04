@@ -1,6 +1,6 @@
 module QuandlAccess
 
-export Quandl, DataSeries, DataTable
+export Quandl, TimeSeries, Table
 export eq, gt, lt, gte, lte
 
 using CSV

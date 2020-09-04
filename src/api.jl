@@ -21,12 +21,12 @@ valid_sample_frequency(x) = x ∈ ["none", "daily", "weekly", "monthly", "quarte
 
 valid_transform(x) = x ∈ ["none", "diff", "rdiff", "rdiff_from", "cumul", "normalize"]
 
-function make_url(q::Quandl, series::DataSeries;
+function make_url(q::Quandl, series::TimeSeries;
              limit = nothing, column_index = nothing,
              start_date = nothing, end_date = nothing,
              order = nothing, collapse = nothing, transform = nothing)
 
-    url = "$SERIES_ROOT/$(series.database_code)/$(series.dataset_code).csv?api_key=$(q.api_key)"
+    url = "$SERIES_ROOT/$(series.code).csv?api_key=$(q.api_key)"
     url = enhance(url, "limit", limit, positive_integer)
     url = enhance(url, "column_index", column_index, non_negative_integer)
     url = enhance(url, "start_date", start_date, valid_date)
@@ -48,11 +48,11 @@ function enhance(url::AbstractString, cond::FilterCondition)
     return string(url, "&", cond.field, cond.op, cond.value)
 end
 
-function make_url(q::Quandl, table::DataTable;
+function make_url(q::Quandl, table::Table;
             filters::AbstractVector{T} = FilterCondition[],
             columns::AbstractVector{String} = String[]) where {T <: FilterCondition}
 
-    url = "$DATA_TABLE_ROOT/$(table.database_code)/$(table.dataset_code).csv?api_key=$(q.api_key)"
+    url = "$DATA_TABLE_ROOT/$(table.code).csv?api_key=$(q.api_key)"
     for cond in filters
         url = enhance(url, cond)
     end
@@ -64,7 +64,7 @@ end
 
 strip_key(url::AbstractString) = replace(url, r"api_key=[0-9a-zA-Z]*" => "api_key=xxxxxx")
 
-function (q::Quandl)(x::T; verbose = false, kwargs...) where {T <: Union{DataSeries, DataTable}}
+function (q::Quandl)(x::T; verbose = false, kwargs...) where {T <: Union{TimeSeries, Table}}
     url = make_url(q, x; kwargs...)
     verbose && @info "Requesting data" strip_key(url)
     try

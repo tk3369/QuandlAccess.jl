@@ -12,23 +12,46 @@ data service.
 Create a `Quandl` object with your API key:
 
 ```julia
-quandl = Quandl("xxxxxxxxxxxxxxxxxx")
+haskey(ENV, "QUANDL_API_KEY") || error("Please define environment variable: QUANDL_API_KEY")
+quandl = Quandl(ENV["QUANDL_API_KEY"])
 ```
 
-Some examples for Time Series API:
+#### Time Series API
 
 ```julia
-quandl(DataSeries("ML", "BBY"))
-quandl(DataSeries("ML", "BBY"); start_date = Date(2020,1,1), end_date = Date(2020,1,5))
-quandl(DataSeries("ML", "BBY"); collapse = "weekly")
-quandl(DataSeries("ML", "BBY"); transform = "diff")
-quandl(DataSeries("ML", "BBY"); order = "asc")
+# get complete time series
+quandl(TimeSeries("ML/BBY"))
+
+# date filters
+quandl(TimeSeries("ML/BBY"); start_date = Date(2020,1,1))
+quandl(TimeSeries("ML/BBY"); start_date = Date(2020,1,1), end_date = Date(2020,1,5))
+quandl(TimeSeries("ML/BBY"); start_date = "2020-01-01", end_date = Date(2020,1,5))
+
+# sample frequencies
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "weekly")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "quarterly")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "annual")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "none")
+
+# transforms
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", transform = "diff")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", transform = "rdiff")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", transform = "rdiff_from")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", transform = "cumul")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", transform = "normalize")
+
+# order
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", order = "asc")
+quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", order = "desc")
 ```
 
-Some examples for Data Table API:
+#### Data Table API
 
 ```julia
-quandl(DataTable("ETFG", "FUND"), filters = [eq("ticker", "SPY")])
-quandl(DataTable("ETFG", "FUND"), filters = [eq("ticker", "SPY")], columns = ["ticker", "nav"])
-quandl(DataTable("ETFG", "FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", "2018-01-09")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY,XOM")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", "2018-01-09")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", Date(2018,1,9))])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")], columns = ["ticker", "nav"])
 ```
