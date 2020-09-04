@@ -17,6 +17,8 @@ quandl = Quandl(ENV["QUANDL_API_KEY"])
 
 #### Time Series API
 
+Submit query using `TimeSeries` object. Standard query options are available.
+
 ```julia
 # get complete time series
 quandl(TimeSeries("ML/BBY"))
@@ -46,6 +48,8 @@ quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", or
 ```
 
 #### Data Table API
+
+Submit query using `Table` object. For filters, the predicate opertors can be `eq`, `gt`, `gte`, `lt`, or `lte`.
 
 ```julia
 quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")])
