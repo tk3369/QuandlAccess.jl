@@ -49,9 +49,9 @@ quandl(TimeSeries("ML/BBY"); start_date = "2018-01-01", collapse = "monthly", or
 #### Data Table API
 
 ```julia
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY")])
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY,XOM")])
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", "2018-01-09")])
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", Date(2018,1,9))])
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY")], columns = ["ticker", "nav"])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY,XOM")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", "2018-01-09")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", Date(2018,1,9))])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")], columns = ["ticker", "nav"])
 ```

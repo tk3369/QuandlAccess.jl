@@ -48,7 +48,7 @@ function enhance(url::AbstractString, cond::FilterCondition)
     return string(url, "&", cond.field, cond.op, cond.value)
 end
 
-function make_url(q::Quandl, table::DataTable;
+function make_url(q::Quandl, table::Table;
             filters::AbstractVector{T} = FilterCondition[],
             columns::AbstractVector{String} = String[]) where {T <: FilterCondition}
 
@@ -64,7 +64,7 @@ end
 
 strip_key(url::AbstractString) = replace(url, r"api_key=[0-9a-zA-Z]*" => "api_key=xxxxxx")
 
-function (q::Quandl)(x::T; verbose = false, kwargs...) where {T <: Union{TimeSeries, DataTable}}
+function (q::Quandl)(x::T; verbose = false, kwargs...) where {T <: Union{TimeSeries, Table}}
     url = make_url(q, x; kwargs...)
     verbose && @info "Requesting data" strip_key(url)
     try

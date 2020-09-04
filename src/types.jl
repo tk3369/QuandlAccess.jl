@@ -11,9 +11,9 @@ quandl(TimeSeries("ML/BBY"); collapse = "weekly")
 quandl(TimeSeries("ML/BBY"); transform = "diff")
 quandl(TimeSeries("ML/BBY"); order = "asc")
 
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY")])
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY")], columns = ["ticker", "nav"])
-quandl(DataTable("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", "2018-01-09")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY")], columns = ["ticker", "nav"])
+quandl(Table("ETFG/FUND"), filters = [eq("ticker", "SPY"), gt("as_of_date", "2018-01-09")])
 ```
 """
 struct Quandl
@@ -32,18 +32,18 @@ struct TimeSeries
 end
 
 """
-    DataTable
+    Table
 
 Represents source of a Quandl database source.
 """
-struct DataTable
+struct Table
     code::String
 end
 
 """
     FilterCondition{T}
 
-Condition that can be used for filtering rows for a `DataTable` query.
+Condition that can be used for filtering rows for a `Table` query.
 """
 struct FilterCondition{T}
     op::String
