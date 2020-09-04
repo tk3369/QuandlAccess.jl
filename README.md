@@ -21,7 +21,7 @@ quandl = Quandl(ENV["QUANDL_API_KEY"])
 # get complete time series
 quandl(TimeSeries("ML/BBY"))
 
-# date filters
+# date filters (works with both Date or String)
 quandl(TimeSeries("ML/BBY"); start_date = Date(2020,1,1))
 quandl(TimeSeries("ML/BBY"); start_date = Date(2020,1,1), end_date = Date(2020,1,5))
 quandl(TimeSeries("ML/BBY"); start_date = "2020-01-01", end_date = Date(2020,1,5))
