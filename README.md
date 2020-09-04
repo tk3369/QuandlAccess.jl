@@ -12,7 +12,6 @@ data service.
 Create a `Quandl` object with your API key:
 
 ```julia
-haskey(ENV, "QUANDL_API_KEY") || error("Please define environment variable: QUANDL_API_KEY")
 quandl = Quandl(ENV["QUANDL_API_KEY"])
 ```
 
