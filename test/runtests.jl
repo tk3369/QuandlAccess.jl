@@ -20,7 +20,7 @@ using Test
         @test valid_date(Date(2020,1,1)) == true
         @test valid_date(DateTime(2020,1,1,0,0,0)) == false
 
-        let q = Quandl("abc"), s = DataSeries("s","t"), t = DataTable("x","y")
+        let q = Quandl("abc"), s = TimeSeries("s/t"), t = DataTable("x/y")
             @test endswith(make_url(q, s; start_date = "2020-01-01"), "start_date=2020-01-01")
             @test endswith(make_url(q, s; end_date = "2020-01-01"), "end_date=2020-01-01")
             @test endswith(make_url(q, s; collapse = "monthly"), "collapse=monthly")

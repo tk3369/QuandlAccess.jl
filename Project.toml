@@ -1,7 +1,7 @@
 name = "QuandlAccess"
 uuid = "9828b13b-9cf9-4ed3-a262-66ff2e7f23f2"
 authors = ["Tom Kwong <tk3369@gmail.com> and contributors"]
-version = "1.0.0"
+version = "2.0.0"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
