@@ -11,7 +11,7 @@ HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 
 [compat]
 CSV = "0.7, 0.8"
-DataFrames = "0.21, 0.22"
+DataFrames = "0.21, 0.22, 1.1"
 HTTP = "0.8, 0.9"
 julia = "1"
 
