@@ -1,7 +1,7 @@
 name = "QuandlAccess"
 uuid = "9828b13b-9cf9-4ed3-a262-66ff2e7f23f2"
 authors = ["Tom Kwong <tk3369@gmail.com> and contributors"]
-version = "2.0.1"
+version = "2.0.2"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
@@ -10,8 +10,8 @@ Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 
 [compat]
-CSV = "0.7, 0.8"
-DataFrames = "0.21, 0.22"
+CSV = "0.7, 0.8, 0.9, 0.10"
+DataFrames = "0.21, 0.22, 1"
 HTTP = "0.8, 0.9"
 julia = "1"
 
